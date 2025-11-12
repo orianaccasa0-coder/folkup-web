@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FolkUP Pasaporte Cultural | La Revolución Cultural Nocturna</title>
+    <meta name="description" content="FolkUP! La fusión de folklore peruano con cultura urbana. Vive el Folk-Rave, Street Food y Gamificación en Lima.">
+    
+    <style>
+        /* --- 0. VARIABLES Y RESET --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0f0618; /* Fondo principal muy oscuro */
+            color: #fff;
+            /* CRÍTICO: Asegura que nada desborde horizontalmente */
+            overflow-x: hidden; 
+            scroll-behavior: smooth;
+            line-height: 1.6;
+        }
+
+        :root {
+            /* Colores Base Andinos Bolder */
+            --rojo-inti: #C0392B; /* Rojo Ladrillo/Sangre más fuerte */
+            --amarillo-sol: #FFD700; /* Oro Puro */
+            --morado-inca: #2C0637; /* Morado Profundo, casi negro */
+            --naranja-fuego: #FF8C00; /* Naranja Vibrante */
+            --turquesa: #1ABC9C; /* Turquesa (usado para contrastes y enlaces) */
+            --gris-claro: #ECF0F1;
+            /* Nuevos Colores Pasaporte */
+            --guinda: #800000; 
+            --crema: #FAF0E6; 
+        }
+
+        /* --- 1. NAVEGACIÓN (Fija) --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, var(--morado-inca), var(--rojo-inti));
+            backdrop-filter: blur(10px);
+            padding: 15px 40px;
+            z-index: 1000;
+            border-bottom: 5px solid var(--amarillo-sol);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.7);
+        }
+
+        /* ESTILO DEL LOGO (REVERTIDO A TEXTO/EMOJI) */
+        .logo {
+            /* Revertido a texto */
+            font-size: 1.8rem; 
+            font-weight: 900;
+            color: white;
+            text-shadow: 4px 4px 0 var(--amarillo-sol);
+        }
+        /* Eliminada la regla .logo img */
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.3s, transform 0.3s;
+            padding: 5px 0;
+            border-bottom: 2px solid transparent;
+            white-space: nowrap; 
+        }
+
+        .nav-links a:hover {
+            color: var(--amarillo-sol);
+            transform: translateY(-2px);
+            border-bottom: 2px solid var(--amarillo-sol);
+        }
+        
+        /* Botón Usuario */
+        .btn-user {
+            background: var(--amarillo-sol); 
+            border: none; 
+            color: var(--morado-inca); 
+            padding: 8px 18px; 
+            border-radius: 25px; 
+            font-weight: 900; 
+            cursor: pointer; 
+            transition: all 0.3s;
+            text-decoration: none;
+            white-space: nowrap;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+        .btn-user:hover {
+            background: white;
+            box-shadow: 0 0 25px var(--amarillo-sol);
+            transform: scale(1.05);
+        }
+
+        /* --- 2. HERO Y BOTONES (AJUSTE CORREGIDO) --- */
+        section {
+            padding: 120px 20px; 
+            position: relative;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            /* Restaurado a centrado para que los botones sean visibles */
+            align-items: center; 
+            justify-content: center;
+            padding-top: 80px; 
+            background: linear-gradient(135deg, var(--morado-inca) 0%, var(--rojo-inti) 50%, var(--naranja-fuego) 100%);
+            text-align: center;
+        }
+        
+        /* AJUSTE CLAVE CORREGIDO: Elimino el padding-top excesivo para que el contenido se centre */
+        .hero-content {
+            /* Alineación al centro (por defecto de flex) para que los botones sean visibles */
+            align-self: center; 
+            /* Se ha eliminado el 'padding-top: 25vh;' que ocultaba los botones */
+        }
+
+        .hero h1 { /* Título Grande pero no Grotesco */
+            font-size: clamp(4rem, 10vw, 7rem); 
+            font-weight: 900;
+            color: white;
+            text-shadow: 
+                6px 6px 0 var(--rojo-inti),
+                12px 12px 0 var(--morado-inca);
+            margin-bottom: 5px; 
+        }
+
+        .hero-subtitle { /* Subtítulo Grande pero no Grotesco */
+            font-size: clamp(1.4rem, 2.5vw, 2rem);
+            color: var(--gris-claro);
+            font-weight: 300;
+            max-width: 900px;
+            /* MARGEN CORREGIDO: Aumento el margen superior para separar la fecha del subtítulo y el subtítulo de los botones */
+            margin: 40px auto 50px; 
+            line-height: 1.2;
+        }
+
+        /* La fecha (hero-badge) se mantiene pegada al H1 */
+        .hero-badge {
+            margin-top: 10px; 
+            margin-bottom: 0; 
+        }
+
+        .btn {
+            padding: 20px 50px;
+            font-size: 19px;
+            font-weight: 900;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0 10px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--amarillo-sol), var(--naranja-fuego));
+            color: var(--morado-inca);
+            box-shadow: 0 15px 40px rgba(255, 193, 7, 0.6);
+            border: 3px solid white;
+        }
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 3px solid white;
+            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Gradientes de las Secciones */
+        .experience { background: linear-gradient(180deg, #0f0618 0%, var(--morado-inca) 100%); }
+        .stands { background: linear-gradient(180deg, var(--morado-inca) 0%, var(--rojo-inti) 100%); }
+        .passport { 
+            background: var(--guinda); 
+            color: var(--crema);
+            padding-bottom: 150px;
+        } 
+        .rewards { background: linear-gradient(180deg, var(--guinda) 0%, var(--morado-inca) 100%); } 
+        .alliances { background: linear-gradient(180deg, var(--morado-inca) 0%, var(--rojo-inti) 100%); } 
+        .tickets { background: linear-gradient(180deg, var(--rojo-inti) 0%, var(--naranja-fuego) 100%); }
+        .live-stream { background: linear-gradient(180deg, var(--naranja-fuego) 0%, var(--morado-inca) 100%); }
+        .location { background: linear-gradient(180deg, var(--morado-inca) 0%, #0f0618 100%); }
+        .social { background: #0f0618; padding-bottom: 80px;}
+
+        /* --- 3. TÍTULOS GENERALES (TIPOGRAFÍA CORREGIDA) --- */
+        .section-title {
+            text-align: center;
+            font-size: clamp(3rem, 7vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 30px;
+            color: white;
+            /* CAMBIO CLAVE: Sombra simplificada para mejorar la legibilidad */
+            text-shadow: 
+                4px 4px 0 var(--rojo-inti), /* Sombra principal más limpia */
+                8px 8px 0 rgba(0, 0, 0, 0.5); /* Una sombra oscura para dar profundidad y separar */
+        }
+        .passport .section-title { 
+            color: var(--crema);
+            /* Sombra simplificada con colores temáticos */
+            text-shadow: 4px 4px 0 var(--morado-inca); 
+        }
+        .rewards .section-title {
+             /* Sombra simplificada con colores temáticos */
+             text-shadow: 4px 4px 0 var(--naranja-fuego);
+        }
+        .alliances .section-title {
+             /* Sombra simplificada con colores temáticos */
+             text-shadow: 4px 4px 0 var(--guinda);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.4rem;
+            color: #ccc;
+            max-width: 1000px;
+            margin: 0 auto 80px;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        .passport .section-subtitle {
+            color: var(--crema);
+        }
+
+        /* --- 4. CARDS Y GRIDS --- */
+        .experience-card, .reward-card, .alliance-card, .stand-type {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid var(--turquesa);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+        .experience-card:hover, .reward-card:hover, .alliance-card:hover, .stand-type:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+            border-color: var(--amarillo-sol);
+        }
+        .experience-card p, .alliance-card p, .reward-step p, .stand-type p {
+            font-size: 1.1rem; 
+        }
+        .experience-grid, .alliance-grid {
+             max-width: 1200px;
+             margin: 0 auto; 
+             display: grid;
+             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+             gap: 30px;
+        }
+        .stands-types {
+             max-width: 1000px;
+             margin: 0 auto; 
+             display: grid;
+             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+             gap: 40px;
+        }
+        
+        /* Alliance Card Customization */
+        .alliance-card {
+            border-color: var(--naranja-fuego);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+        }
+        .alliance-logo-placeholder {
+            background-color: var(--morado-inca);
+            height: 70px; 
+            margin: 15px auto; 
+            border-radius: 10px;
+            border: 3px solid var(--amarillo-sol); 
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--crema);
+            font-size: 1.1rem;
+            font-weight: 700;
+            padding: 10px;
+        }
+
+        /* --- 8. SOCIAL (SECCIÓN CON LOGOS DE REDES) - CORRECCIÓN LOGOS --- */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 40px auto; 
+        }
+        .social-link {
+            display: block;
+            text-decoration: none;
+            color: white;
+            background: var(--morado-inca);
+            border: 3px solid var(--rojo-inti);
+            border-radius: 15px;
+            padding: 30px;
+            width: 280px; 
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        .social-link:hover {
+            transform: translateY(-8px);
+            background: var(--rojo-inti);
+            border-color: var(--amarillo-sol);
+        }
+        
+        /* ESTILO PARA LOS ÍCONOS DE FONT AWESOME (i tags) */
+        .social-icon-fa {
+            font-size: 50px; /* Tamaño del icono */
+            margin-bottom: 10px;
+            color: white; /* Asegura el color blanco del icono */
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+            display: block; /* Para centrarlo correctamente */
+            width: 100%; /* Ocupa todo el ancho del contenedor para centrar el icono */
+        }
+        
+        /* El estilo .social-icon-img ya no es necesario, pero lo dejo por si se vuelve a usar */
+        .social-icon-img {
+            /* Esto era para la imagen, ahora usamos Font Awesome */
+            display: none; 
+        }
+
+        .social-name {
+            font-size: 1.5rem; 
+            font-weight: 900;
+            color: var(--amarillo-sol);
+        }
+        .social-username {
+            font-size: 1.1rem; 
+            color: #ccc;
+            display: block;
+            margin-top: 5px;
+            font-weight: 500;
+        }
+        
+        /* --- El resto del CSS se mantiene igual para el Pasaporte, Rewards, etc. --- */
+        
+        /* --- 5. PASAPORTE VISUAL (TRES COLUMNAS POR REGIÓN) --- */
+        .stamp-columns-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Three columns */
+            gap: 30px;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+        .region-column h3 {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--amarillo-sol);
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--crema);
+            padding-bottom: 10px;
+            font-weight: 900;
+        }
+        .region-cards {
+            display: flex;
+            flex-direction: column; /* Stack cards vertically within the column */
+            gap: 20px;
+        }
+        .stamp-visual-card {
+            background: var(--crema);
+            color: var(--guinda);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 5px solid var(--rojo-inti); 
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); 
+            width: 100%;
+        }
+
+        /* --- 6. REWARDS (CUADROS) --- */
+        .rewards-chain {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto; 
+        }
+        .reward-step {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid var(--turquesa);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            flex: 1 1 300px; 
+            max-width: 350px;
+        }
+        .reward-step:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+            border-color: var(--amarillo-sol);
+        }
+        .reward-step h3 {
+            font-size: 1.8rem; 
+            margin-bottom: 15px;
+            color: var(--amarillo-sol);
+        }
+        .reward-step .points {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin: 10px 0;
+            color: var(--naranja-fuego);
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+        }
+        .level-badge {
+            background: var(--turquesa);
+            color: var(--morado-inca);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 900;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        /* --- 7. UBICACIÓN --- */
+        .location-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            max-width: 1200px; 
+            margin: 0 auto; 
+            align-items: center;
+        }
+        .map-container {
+            border: 6px solid var(--amarillo-sol);
+            border-radius: 15px;
+            overflow: hidden;
+            height: 450px; 
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        
+        /* --- 9. MODALES --- */
+        .stamp-detail-modal {
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.8); 
+        }
+
+        .modal-content {
+            background-color: var(--crema);
+            color: var(--guinda);
+            margin: 15% auto; 
+            padding: 30px;
+            border: 5px solid var(--amarillo-sol);
+            width: 90%; 
+            max-width: 600px;
+            border-radius: 20px;
+            position: relative;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.8);
+            animation-name: animatetop;
+            animation-duration: 0.4s;
+        }
+
+        .close-btn {
+            color: var(--rojo-inti);
+            float: right;
+            font-size: 36px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: var(--morado-inca);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @keyframes animatetop {
+            from {top: -300px; opacity: 0}
+            to {top: 0; opacity: 1}
+        }
+
+        /* --- 10. CHATBOT INTI (AJUSTADO) --- */
+        .chatbot-button {
+            padding: 15px; background: var(--amarillo-sol); border: none; border-radius: 50%; font-size: 2rem; cursor: pointer; 
+            position: fixed; bottom: 30px; right: 30px; z-index: 1001; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s;
+        }
+        .chatbot-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.8);
+        }
+        .chatbot-window {
+            position: fixed; 
+            bottom: 100px; 
+            right: 30px; 
+            width: 400px; 
+            max-height: 80vh; 
+            background: var(--morado-inca); 
+            border: 5px solid var(--amarillo-sol); 
+            border-radius: 25px; 
+            overflow: hidden; 
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.8); 
+            z-index: 999; 
+            display: none; 
+            flex-direction: column;
+        }
+        .chatbot-header {
+             display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: var(--amarillo-sol); color: var(--morado-inca);
+        }
+        .chatbot-messages {
+            flex-grow: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;
+        }
+        .chatbot-input {
+            display: flex; padding: 15px; background: #222; border-top: 1px solid #444;
+        }
+        .chatbot-input input {
+            flex-grow: 1; padding: 10px; border-radius: 20px; border: none; margin-right: 10px;
+        }
+        .chatbot-input button {
+             background: var(--naranja-fuego); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 1.5rem; cursor: pointer; transition: transform 0.2s;
+        }
+        .message.bot {
+            background: #444; padding: 10px 15px; border-radius: 15px; align-self: flex-start; max-width: 85%;
+        }
+        .message.user {
+             background: var(--amarillo-sol); color: var(--morado-inca); padding: 10px 15px; border-radius: 15px; align-self: flex-end; max-width: 85%;
+        }
+
+        /* --- 11. MEDIA QUERIES para la estética responsive --- */
+         @media (max-width: 968px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            /* CRÍTICO 1: Ubicación debe apilarse */
+            .location-grid {
+                grid-template-columns: 1fr;
+            }
+            .map-container {
+                height: 350px;
+            }
+            
+            /* CRÍTICO 2: Tickets deben apilarse */
+            .ticket-info {
+                grid-template-columns: 1fr; /* Cambia a una columna */
+            }
+
+            /* CRÍTICO 3: Social Links más flexibles */
+            .social-link {
+                width: 90%;
+            }
+
+            .chatbot-window {
+                width: 90%;
+                right: 5%;
+                bottom: 100px;
+            }
+             /* Ajuste móvil para H1 */
+            .hero h1 {
+                 font-size: 5rem;
+            }
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            /* Pasaporte se apila en móvil */
+             .stamp-columns-container {
+                grid-template-columns: 1fr; 
+            }
+        }
+        
+        /* FOOTER */
+        footer {
+            background: #0f0618;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 4px solid var(--amarillo-sol);
+        }
+
+        footer p {
+            color: #999;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        footer p:first-child {
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">🎭 FolkUP!</div>
+        <ul class="nav-links">
+            <li><a href="#experience">Experiencia</a></li>
+            <li><a href="#stands">Stands</a></li>
+            <li><a href="#passport">Pasaporte</a></li> 
+            <li><a href="#rewards">Recompensas</a></li> 
+            <li><a href="#alliances">Alianzas</a></li> 
+            <li><a href="#tickets">Reservar</a></li>
+            <li><a href="#live">En Vivo</a></li>
+            <li><button onclick="openUserModal()" class="btn-user">👤 Usuario</button></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>FolkUP!</h1>
+            <div class="hero-badge" style="color: var(--amarillo-sol); font-weight: 700; font-size: 1.2rem; margin-top: 10px;">🔥 PRÓXIMO EVENTO: 15 DE NOVIEMBRE</div>
+            
+            <p class="hero-subtitle">
+                La noche donde el folklore peruano se encuentra con la cultura urbana<br>
+                🎭 Folk-Rave • 🍜 Street Food • 🎮 Gamificación Real
+            </p>
+            <div class="hero-cta">
+                <a href="#tickets" class="btn btn-primary">🎫 Reservar Mi Lugar (S/15)</a>
+                <a href="#alliances" class="btn btn-secondary">🤝 Ver Alianzas</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="experience" id="experience">
+        <h2 class="section-title">🔥 Por Qué Existe FolkUP</h2>
+        <p class="section-subtitle">
+            <strong style="color: var(--amarillo-sol); font-size: 1.5rem;">¿Te has preguntado por qué el folklore solo se vive en eventos formales o lugares lejanos?</strong><br><br>
+            FolkUP nace para que los jóvenes redescubran el orgullo peruano sin sacrificar la diversión, la socialización ni la tecnología que ya aman.
+        </p>
+        
+        <h2 class="section-title" style="margin-top: 80px; font-size: 3rem;">✨ Qué Vas a Vivir</h2>
+        <div class="experience-grid">
+             <div class="experience-card">
+                 <div class="experience-icon">🤩</div>
+                 <h3>Experiencia Social</h3>
+                 <p>Conoce gente nueva, comparte la cultura y únete a una comunidad vibrante de jóvenes orgullosos de su país.</p>
+             </div>
+             <div class="experience-card">
+                 <div class="experience-icon">✨</div>
+                 <h3>Acceso a Aliados</h3>
+                 <p>Tus sellos te abren puertas a descuentos exclusivos en academias de danza, viajes turísticos y eventos aliados.</p>
+             </div>
+             <div class="experience-card">
+                 <div class="experience-icon">📸</div>
+                 <h3>Spots Insta-ready</h3>
+                 <p>Diseño de interiores que fusiona iconografía andina con arte urbano. Perfecto para tus fotos y videos en redes sociales.</p>
+             </div>
+             <div class="experience-card">
+                 <div class="experience-icon">🏆</div>
+                 <h3>Premios Reales</h3>
+                 <p>Acumula sellos y participa por el premio mayor: un viaje todo pagado a Cusco o entradas VIP para el próximo festival.</p>
+             </div>
+        </div>
+    </section>
+
+    <section class="stands" id="stands">
+        <h2 class="section-title">🍜 El Mercado Cultural Nocturno</h2>
+        <p class="section-subtitle">
+            Cada stand representa un destino auténtico. Al consumir o interactuar, escanea su QR y desbloquea el sello digital para tu pasaporte.
+        </p>
+        <div class="stands-types">
+            <div class="stand-type experience-card">
+                <h3>🍜 Street Food Fusion</h3>
+                <p style="color: #ddd; margin-bottom: 25px;">
+                    Comida peruana reinventada por chefs emergentes.
+                </p>
+                <div class="stand-examples" style="text-align: left; padding-left: 20px; font-size: 1.1rem;">
+                    <div class="stand-item"><strong>🏔️ Sierra (Cusco):</strong> Anticuchos de alpaca.</div>
+                    <div class="stand-item"><strong>🌊 Costa (Lima):</strong> Ceviche fusion.</div>
+                </div>
+            </div>
+
+            <div class="stand-type experience-card">
+                <h3>🛍️ Feria de Emprendimientos</h3>
+                <p style="color: #ddd; margin-bottom: 25px;">
+                    Marcas peruanas que fusionan cultura + innovación.
+                </p>
+                <div class="stand-examples" style="text-align: left; padding-left: 20px; font-size: 1.1rem;">
+                    <div class="stand-item"><strong>👕 Moda Andina Urbana:</strong> Streetwear con iconografía inca.</div>
+                    <div class="stand-item"><strong>🎨 Arte Visual:</strong> Ilustraciones, prints y stickers.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="passport" id="passport">
+        <h2 class="section-title">🗺️ Tu Pasaporte Cultural</h2>
+        <p class="section-subtitle" style="color: var(--crema);">
+            Cada sello es un destino de nuestras 3 regiones. Toca un sello para ver tu progreso, puntos y recompensas individuales.
+        </p>
+        
+        <div class="stamp-columns-container">
+            
+            <div class="region-column">
+                <h3>🌊 COSTA</h3>
+                <div class="region-cards">
+                    <div class="stamp-visual-card" onclick="openStampDetail('Lima', 'Costa', 'S/15 de Descuento')">
+                        <div class="region-icon">🏛️</div>
+                        <div class="region-name">LIMA</div>
+                        <div class="region-type">COSTA</div>
+                    </div>
+                    <div class="stamp-visual-card" onclick="openStampDetail('Piura', 'Costa', 'Entrada 2x1')">
+                        <div class="region-icon">🏖️</div>
+                        <div class="region-name">PIURA</div>
+                        <div class="region-type">COSTA</div>
+                    </div>
+                    <div class="stamp-visual-card" onclick="openStampDetail('Trujillo', 'Costa', '50 Puntos Extra')">
+                        <div class="region-icon">🏺</div>
+                        <div class="region-name">TRUJILLO</div>
+                        <div class="region-type">COSTA</div>
+                    </div>
+                    <div class="stamp-visual-card" onclick="openStampDetail('Ica', 'Costa', 'Vaso de Pisco')">
+                        <div class="region-icon">🍇</div>
+                        <div class="region-name">ICA</div>
+                        <div class="region-type">COSTA</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="region-column">
+                <h3>🏔️ SIERRA</h3>
+                <div class="region-cards">
+                    <div class="stamp-visual-card" onclick="openStampDetail('Cusco', 'Sierra', '25% OFF en Danza')">
+                        <div class="region-icon">🏔️</div>
+                        <div class="region-name">CUSCO</div>
+                        <div class="region-type">SIERRA</div>
+                    </div>
+                    <div class="stamp-visual-card" onclick="openStampDetail('Arequipa', 'Sierra', 'Bebida Artesanal')">
+                        <div class="region-icon">🌋</div>
+                        <div class="region-name">AREQUIPA</div>
+                        <div class="region-type">SIERRA</div>
+                    </div>
+                    <div class="stamp-visual-card" onclick="openStampDetail('Puno', 'Sierra', '10% OFF Ticketmaster')">
+                        <div class="region-icon">🚢</div>
+                        <div class="region-name">PUNO</div>
+                        <div class="region-type">SIERRA</div>
+                    </div>
+                    <div class="stamp-visual-card" onclick="openStampDetail('Huancayo', 'Sierra', 'Descuento en Street Food')">
+                        <div class="region-icon">🎪</div>
+                        <div class="region-name">HUANCAYO</div>
+                        <div class="region-type">SIERRA</div>
+                    </div>
+                    <div class="stamp-visual-card" onclick="openStampDetail('Ayacucho', 'Sierra', '50 Puntos Extra')">
+                        <div class="region-icon">⛪</div>
+                        <div class="region-name">AYACUCHO</div>
+                        <div class="region-type">SIERRA</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="region-column">
+                <h3>🌴 SELVA</h3>
+                <div class="region-cards">
+                    <div class="stamp-visual-card" onclick="openStampDetail('Iquitos', 'Selva', '15% OFF Oltursa/Sky')">
+                        <div class="region-icon">🌴</div>
+                        <div class="region-name">IQUITOS</div>
+                        <div class="region-type">SELVA</div>
+                    </div>
+                     <div class="stamp-visual-card" onclick="openStampDetail('Amazonas', 'Selva', 'Bebida Artesanal')">
+                        <div class="region-icon">🦜</div>
+                        <div class="region-name">AMAZONAS</div>
+                        <div class="region-type">SELVA</div>
+                    </div>
+                     <div class="stamp-visual-card" onclick="openStampDetail('Tarapoto', 'Selva', 'Entrada 2x1')">
+                        <div class="region-icon">🏞️</div>
+                        <div class="region-name">TARAPOTO</div>
+                        <div class="region-type">SELVA</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="rewards" id="rewards">
+        <h2 class="section-title">🎁 Puntos Inti: La Cadena de Recompensas</h2>
+        <p class="section-subtitle">
+            Cada sello te otorga <strong>100 Puntos Inti</strong> y desbloquea descuentos en nuestras alianzas de forma progresiva.
+        </p>
+        <div class="rewards-chain">
+            <div class="reward-step">
+                <div class="level-badge">Nivel 1</div>
+                <h3>Explorador</h3>
+                <div class="points">300 PUNTOS</div>
+                <p><strong>Recompensa FolkUP:</strong> Bebida Artesanal Gratis en el evento.</p>
+                <p style="margin-top: 10px; font-weight: 700;">(3 Sellos)</p>
+            </div>
+            <div class="reward-step">
+                <div class="level-badge">Nivel 2</div>
+                <h3>Coleccionista</h3>
+                <div class="points">750 PUNTOS</div>
+                <p><strong>Recompensa Alianza:</strong> 10% OFF en tickets Ticketmaster <strong>O</strong> 25% OFF en clases de danza Brisas.</p>
+                <p style="margin-top: 10px; font-weight: 700;">(8 Sellos)</p>
+            </div>
+            <div class="reward-step" style="background: var(--rojo-inti); border-color: var(--amarillo-sol);">
+                <div class="level-badge" style="background: var(--amarillo-sol); color: var(--rojo-inti);">Nivel 3</div>
+                <h3>Embajador Cultural</h3>
+                <div class="points">1200 PUNTOS</div>
+                <p><strong>GRAN PREMIO:</strong> Viaje todo pagado a Cusco <strong>O</strong> 15% OFF en turismo Sky/Oltursa + Entrada VIP al próximo evento FolkUP.</p>
+                <p style="margin-top: 10px; font-weight: 900; color: white;">(12 Sellos)</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="alliances" id="alliances">
+        <h2 class="section-title" style="color: white;">🤝 Nuestras Alianzas Estratégicas</h2>
+        <p class="section-subtitle" style="color: #ddd;">
+            Los Puntos Inti que ganes en tu Pasaporte te dan acceso a estos beneficios.
+        </p>
+        
+        <div class="alliance-grid">
+            <div class="alliance-card">
+                <div class="experience-icon">🎭</div>
+                <h3>Centros de Danza (Costa/Sierra)</h3>
+                <div class="alliance-logo-placeholder">Brisas del Titicaca (Danza)</div>
+                <p><strong>Brisas del Titicaca:</strong> 25% de descuento en el primer mes de clases de Marinera o Huayno al canjear 500 Puntos Inti.</p>
+            </div>
+            
+            <div class="alliance-card">
+                <div class="experience-icon">🎟️</div>
+                <h3>Venta de Tickets Web (Costa/Sierra)</h3>
+                <div class="alliance-logo-placeholder">Ticketmaster (Eventos)</div>
+                <p><strong>Ticketmaster:</strong> 10% OFF en cualquier entrada a festivales o conciertos nacionales al canjear 750 Puntos Inti.</p>
+            </div>
+
+            <div class="alliance-card">
+                <div class="experience-icon">✈️</div>
+                <h3>Servicios Turísticos (Sierra/Selva)</h3>
+                <div class="alliance-logo-placeholder">Sky / Oltursa (Viajes)</div>
+                <p><strong>Oltursa/Sky:</strong> 15% de descuento en pasajes de bus o tours a Cusco o Iquitos al canjear 1000 Puntos Inti. ¡Tu viaje empieza aquí!</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="tickets" id="tickets">
+        <h2 class="section-title">🎫 ¡Reserva tu Pasaporte Ahora!</h2>
+        <p class="section-subtitle">
+            El cupo es limitado para garantizar una experiencia de alta calidad.
+        </p>
+        <div class="ticket-info" style="max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr; gap: 40px; align-items: center;">
+            <div class="experience-card" style="border-color: var(--amarillo-sol); text-align: center;">
+                <h3>Pasaporte Cultural (Acceso General)</h3>
+                <div class="price" style="font-size: 4rem; font-weight: 900; color: var(--amarillo-sol); margin: 10px 0 20px;">S/ 15.00</div>
+                <ul style="list-style: none; text-align: left; margin-bottom: 30px; font-size: 1.2rem; color: #ddd;">
+                    <li>✅ Acceso total al evento (Folk-Rave + Mercado Pop-Up).</li>
+                    <li>✅ Activación de tu Pasaporte Digital y 100 Puntos Inti.</li>
+                </ul>
+                <button class="btn btn-primary" onclick="reserveTicket()">Comprar Ahora</button>
+            </div>
+            <div class="experience-card" style="background: var(--rojo-inti); border-color: var(--naranja-fuego);">
+                <p style="font-size: 1.5rem; font-weight: 700;">¡Últimos Cupos!</p>
+                <p style="margin-top: 15px; font-size: 2rem; color: var(--amarillo-sol); font-weight: 900;">Quedan 47 entradas</p>
+                <p style="margin-top: 15px; font-size: 1.1rem;">Este evento se llena rápido.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="live-stream" id="live">
+        <h2 class="section-title">🔴 Transmisión en Vivo</h2>
+        <p class="section-subtitle">
+            ¿No puedes asistir? Transmitimos cada evento EN VIVO.
+        </p>
+        <div class="stream-container" style="max-width: 900px; margin: 0 auto;">
+            <div class="stream-player" id="streamPlayer" style="border: 6px solid var(--amarillo-sol); border-radius: 25px; background: #000; position: relative;">
+                <div style="text-align: center; padding: 100px 0;">
+                    <div style="font-size: 120px; margin-bottom: 20px;">🎭</div>
+                    <div style="font-size: 24px; color: white; font-weight: 700;">Brisas del Titicaca • Folk-Rave</div>
+                    <div style="font-size: 16px; color: var(--amarillo-sol); margin-top: 10px;">Stream iniciará el día del evento</div>
+                </div>
+            </div>
+            <div class="stream-info" style="text-align: center; margin-top: 40px;">
+                <button class="btn btn-primary" onclick="notifyStream()">
+                    🔔 Notificarme del Stream
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="location" id="location">
+        <h2 class="section-title">📍 Cómo Llegar al Parque Kennedy</h2>
+        <p class="section-subtitle">
+            Ubicación súper céntrica y accesible en el corazón de Miraflores.
+        </p>
+        <div class="location-grid">
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.8647539075355!2d-77.03264428456885!3d-12.122047346853247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c81d8c067a9d%3A0xf626b911b33346d0!2sParque%20Kennedy!5e0!3m2!1ses-419!2spe!4v1639017600000!5m2!1ses-419!2spe" 
+                        allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
+            <div class="experience-card">
+                <h3>Detalles para Llegar</h3>
+                <ul style="text-align: left; list-style: none; padding-left: 0; font-size: 1.1rem;">
+                    <li style="margin-bottom: 15px;">
+                        <strong>🚇 Metropolitano:</strong> Estación Ricardo Palma (a 5 minutos).
+                    </li>
+                    <li style="margin-bottom: 15px;">
+                        <strong>🚗 Taxi/Ride-share:</strong> Pídele al conductor que te deje en la entrada principal.
+                    </li>
+                </ul>
+                <a href="https://maps.app.goo.gl/tB5XGzT6S5W9T8Fm7" target="_blank" class="btn btn-primary" style="padding: 15px 30px; font-size: 16px;">Abrir en Google Maps</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="social" id="social">
+        <h2 class="section-title">📱 Únete a la Comunidad FolkUP!</h2>
+        <p class="section-subtitle">
+            Síguenos para ver detrás de cámaras, concursos y más cultura urbana-andina.
+        </p>
+        <div class="social-links">
+            <a href="https://www.instagram.com/folkupstartup_" class="social-link" target="_blank">
+                <i class="fa-brands fa-instagram social-icon-fa"></i>
+                <div class="social-name">Instagram</div>
+                <div class="social-username">@folkupstartup_</div>
+            </a>
+            <a href="https://www.tiktok.com/@folkupstartup_" class="social-link" target="_blank">
+                <i class="fa-brands fa-tiktok social-icon-fa"></i>
+                <div class="social-name">TikTok</div>
+                <div class="social-username">@folkupstartup_</div>
+            </a>
+            <a href="https://www.facebook.com/FolkUpStartup" class="social-link" target="_blank">
+                <i class="fa-brands fa-facebook-f social-icon-fa"></i>
+                <div class="social-name">Facebook</div>
+                <div class="social-username">/FolkUpStartup</div>
+            </a>
+        </div>
+    </section>
+
+    <div class="chatbot">
+        <button class="chatbot-button" onclick="toggleChatbot()">☀️</button>
+        <div class="chatbot-window" id="chatbotWindow">
+             <div class="chatbot-header">
+                <div class="chatbot-title" style="font-weight: 900; font-size: 1.2rem;">
+                    <span style="font-size: 28px; margin-right: 10px;">☀️</span>
+                    <span>INTI • Asistente Virtual</span>
+                </div>
+                <button class="chatbot-close" style="background: none; border: none; color: var(--morado-inca); font-size: 2rem; cursor: pointer;" onclick="toggleChatbot()">×</button>
+            </div>
+            <div class="chatbot-messages" id="chatMessages">
+                <div class="message bot">
+                    ¡Hola! Soy <strong>INTI</strong>, tu guía personal 🌟<br><br>
+                    <strong>¿En qué puedo ayudarte?</strong><br><br>
+                    Pregúntame sobre el evento, pasaporte, alianzas, o sobre la cultura peruana, historia o gastronomía.
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatInput" placeholder="Escribe tu pregunta..." onkeypress="handleChatKeypress(event)">
+                <button onclick="sendMessage()">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 FolkUP Pasaporte Cultural - Hecho con 💜 en Perú</p>
+    </footer>
+
+    <div id="stampDetailModal" class="stamp-detail-modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeStampDetail()">×</span>
+            <h2 id="modalTitle" style="color: var(--guinda);">Detalle del Sello</h2>
+            <div id="modalContent">
+                </div>
+        </div>
+    </div>
+    
+    <div id="userModal" class="stamp-detail-modal">
+        <div class="modal-content" style="max-width: 400px; text-align: center;">
+            <span class="close-btn" onclick="closeUserModal()">×</span>
+            <h2 style="color: var(--guinda); margin-bottom: 20px;">👤 Área de Usuario</h2>
+            <p style="color: var(--guinda); font-weight: 700;">¡Únete a la Comunidad FolkUP!</p>
+            <input type="email" placeholder="Correo Electrónico" style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px;">
+            <input type="password" placeholder="Contraseña" style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px;">
+            <button class="btn btn-primary" style="width: 100%; margin-top: 20px; padding: 15px 0;" onclick="alert('Cuenta Creada / Iniciada (Simulación)')">Crear Cuenta / Iniciar Sesión</button>
+        </div>
+    </div>
+
+    <script>
+        // --- SCRIPT PARA ANIMACIONES EN SCROLL ---
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.experience-card, .stand-type, .reward-step, .social-link, .alliance-card, .stamp-visual-card').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease-out';
+                observer.observe(el);
+            });
+        });
+        
+        // --- SCRIPT PARA SMOOTH SCROLL ---
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        const navHeight = document.querySelector('nav').offsetHeight; 
+                        const targetPosition = targetSection.offsetTop - navHeight - 20;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+
+        // --- SCRIPT CHATBOT INTI (Funcionalidad Flotante) ---
+        function toggleChatbot() {
+            const chatWindow = document.getElementById('chatbotWindow');
+            chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
+            
+            if (chatWindow.style.display === 'flex') {
+                document.getElementById('chatInput').focus();
+            }
+        }
+
+        function handleChatKeypress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+        
+        function getIntiResponse(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            // 1. Cultura, Historia y Gastronomía
+            if (lowerMessage.includes('gastronomia') || lowerMessage.includes('comida peruana') || lowerMessage.includes('plato')) {
+                return '🍽️ <strong>¡Nuestra gastronomía es Patrimonio!</strong> Te recomiendo probar el ceviche, el Lomo Saltado y la Pachamanca. En FolkUP, tenemos Street Food Fusion inspirado en estas joyas.';
+            } else if (lowerMessage.includes('historia') || lowerMessage.includes('cultura peruana') || lowerMessage.includes('inca')) {
+                return '📜 <strong>Perú es cuna de civilizaciones.</strong> Desde el poderoso Imperio Inca (Tawantinsuyu) hasta las ricas culturas Mochica y Nazca. Nuestra historia es una fusión de tradición y resistencia. ¿Algo más específico?';
+            } else if (lowerMessage.includes('machu picchu') || lowerMessage.includes('cusco')) {
+                 return '🏔️ <strong>Machu Picchu</strong> es una obra maestra de arquitectura e ingeniería Inca, y una de las 7 maravillas del mundo moderno. ¡Si completas tu pasaporte, podrías ganar un viaje para visitarla!';
+            }
+
+            // 2. Preguntas del Evento
+            else if (lowerMessage.includes('sello') || lowerMessage.includes('pasaporte') || lowerMessage.includes('puntos')) {
+                return '🎭 <strong>¡Tu pasaporte es tu llave!</strong> Cada sello suma 100 Puntos Inti. Acumula 1200 puntos para el Gran Premio. ¡Ve a la sección Pasaporte!';
+            } else if (lowerMessage.includes('alianza') || lowerMessage.includes('premio') || lowerMessage.includes('descuento')) {
+                return '🤝 <strong>¡Claro!</strong> Tenemos alianzas con centros de danza (ej: Brisas del Titicaca), empresas de tickets (ej: Ticketmaster) y turismo (ej: Sky/Oltursa). Tus puntos desbloquean descuentos reales. Revisa la sección **Alianzas**.';
+            } else if (lowerMessage.includes('evento') || lowerMessage.includes('cuando') || lowerMessage.includes('horario')) {
+                return '📅 <strong>PRÓXIMO EVENTO FOLKUP:</strong> Viernes 15 de Noviembre 2025. ⏰ 7:00 PM - 11:00 PM. ¡Te esperamos en el Parque Kennedy!';
+            } else if (lowerMessage.includes('entrada') || lowerMessage.includes('precio') || lowerMessage.includes('reservar')) {
+                return '🎫 <strong>El costo de la entrada es de S/15.00</strong>. Te da acceso total y activa tu Pasaporte Digital con 100 Puntos Inti. ¡Reserva en la sección Tickets!';
+            } else {
+                return '🤔 <strong>Mmm, soy INTI.</strong> Puedo ayudarte con: Cultura Peruana, Historia, Gastronomía, Entradas, Horarios, Ubicación, Pasaporte, Puntos y Alianzas. ¿Podrías ser más específico?';
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            if (!message) return;
+            
+            const messagesContainer = document.getElementById('chatMessages');
+            
+            // Mensaje del usuario
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.textContent = message;
+            messagesContainer.appendChild(userMsg);
+            input.value = '';
+            
+            // Respuesta de INTI
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'message bot';
+                botMsg.innerHTML = getIntiResponse(message.toLowerCase());
+                messagesContainer.appendChild(botMsg);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 800);
+            
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function reserveTicket() {
+             alert('🎫 RESERVA TU ENTRADA - S/ 15.00\n\n' +
+                   '✅ Redirigiendo a pasarela de pago segura...');
+        }
+        
+        function notifyStream() {
+            alert('🔔 ¡NOTIFICACIÓN ACTIVADA!\n\n' +
+                  'Te avisaremos por correo una hora antes del inicio. ¡No te lo pierdas! 🎭');
+        }
+
+        // --- FUNCIONALIDAD DE PASAPORTE Y USUARIO (Modal - Restablecida) ---
+
+        function openStampDetail(region, type, reward) {
+            const modal = document.getElementById('stampDetailModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalContent = document.getElementById('modalContent');
+            
+            const points = 100; // Puntos fijos por sello
+            const totalSellos = 4; // Simulación
+
+            modalTitle.innerHTML = `⭐ Sello de ${region} (${type})`;
+            modalContent.innerHTML = `
+                <p style="margin-bottom: 20px;"><strong>¡Sello de ${region} Obtenido!</strong> Tu pasaporte se ha actualizado al visitar el stand de esta región.</p>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 10px; font-size: 1.1rem;"><strong>🏆 Nivel de Sello:</strong> Nivel ${Math.ceil(Math.random() * 3)}</li>
+                    <li style="margin-bottom: 10px; font-size: 1.1rem;"><strong>💰 Puntos Acumulados:</strong> <strong style="color: var(--naranja-fuego); font-size: 1.2rem;">${points * totalSellos} Puntos Inti</strong> (Total)</li>
+                    <li style="margin-bottom: 10px; font-size: 1.1rem;"><strong>🎁 Recompensa:</strong> ${reward}</li>
+                    <li style="margin-bottom: 10px; font-size: 1.1rem;"><strong>🗓️ Fecha de Canjeo (Simulada):</strong> 15/11/2025</li>
+                </ul>
+                <p style="margin-top: 20px; font-weight: 700;">¡Sigue coleccionando para los descuentos de Alianza! 🤝</p>
+            `;
+            modal.style.display = "block";
+        }
+
+        function closeStampDetail() {
+            document.getElementById('stampDetailModal').style.display = "none";
+        }
+
+        function openUserModal() {
+            document.getElementById('userModal').style.display = "block";
+        }
+
+        function closeUserModal() {
+            document.getElementById('userModal').style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            const modalStamp = document.getElementById('stampDetailModal');
+            const modalUser = document.getElementById('userModal');
+
+            if (event.target == modalStamp) {
+                closeStampDetail();
+            }
+            if (event.target == modalUser) {
+                closeUserModal();
+            }
+        }
+    </script>
+</body>
+</html>
